@@ -1,5 +1,5 @@
 
-const locations = [
+const Data = [
 {
 "id": 1,
 "name": "Cox's Bazar",

@@ -2,10 +2,11 @@
 import React, { createContext, useEffect, useState } from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
+  BrowserRouter as 
   Switch,
   Route,
-  Link
+  useLocation,
+  
 } from "react-router-dom";
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
@@ -13,12 +14,12 @@ import Login from './Components/Login/Login';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Search from './Components/Search/Search';
 import Booking from './Components/Booking/Booking';
-import { getCurrentUser, handleSignOut } from './components/firebaseAuth/HandleLogin';
+import { getCurrentUser, handleSignOut } from './Components/firebaseAuth/firebaseAuth';
 
 
 export const UserContext = createContext();
 function App() {
-  const Data = useData ();
+  const location = useLocation();
   const [user,setUser]=useState(null);
   const [bookingInfo,setBookingInfo] = useState({});
 
@@ -34,38 +35,22 @@ function App() {
     })
   }
   return (
-    <UserContext.Provider value={{ user, setUser, bookingInfo, setBookingInfo, signOUtUser}} >
-         
-    
-    <div>
-    
-    <Header> </Header>
-    <firebaseAuth></firebaseAuth>
-
-    <Switch>
-          
-          <Route path="/home">
-          <Home> </Home>
-          </Route>
-          <Route path="/booking/:id">
-          <Booking> </Booking>
-          </Route>
-          
-          <PrivateRoute path=" /search/:id"> 
-          <Search> </Search>
-          </PrivateRoute>
-          <Route path="/login">
-            <Login> </Login>
-          </Route>
-           
-          <Route path="/">
-            
-          </Route>
-        </Switch>
-      
-    </div>
-  );
+   
+ 
+<UserContext.Provider value={{ user, setUser, bookingInfo, setBookingInfo, signOutUser }}>
+<div className={`${location.pathname === '/' || location.pathname.includes('booking') ? "home" : ""}`}>
+  <Header />
+  <Switch>
+    <Route exact path="/" component={Home} />
+    <Route path="/booking/:id" component={Booking} />
+    <PrivateRoute path="/search/:id">
+      <Search />
+    </PrivateRoute>
+    <Route path="/login" component={Login} />
+  </Switch>
+</div>
+</UserContext.Provider>
+ );
 }
-
 
 export default App;

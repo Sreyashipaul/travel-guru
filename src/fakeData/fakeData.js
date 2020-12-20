@@ -1,5 +1,5 @@
 
-const Data = [
+const locations = [
 {
 "id": 1,
 "name": "Cox's Bazar",
@@ -116,4 +116,6 @@ const Data = [
 ]
 },
 
+]
 
+export default locations;

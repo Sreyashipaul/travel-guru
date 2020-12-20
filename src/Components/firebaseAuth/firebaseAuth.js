@@ -1,9 +1,15 @@
 
-import *as  firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
+
+
 import firebaseConfig from "../firebaseConfig/firebaseConfig";
 
+export const initializeFirebase = () => {
+  if (firebase.apps.length === 0) {
 firebase.initializeApp(firebaseConfig);
+  }
+}
 
 export const createUserWithEmailAndPassword = ({ firstName, lastName, email, password }) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)

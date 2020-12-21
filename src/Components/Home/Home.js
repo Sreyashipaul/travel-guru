@@ -59,7 +59,7 @@ function Home() {
             onClick={(swiper) => onClickHandler(swiper)}
             onSlideChange={(swiper) => setSlideIndex(swiper.realIndex)}
           >
-            {locations.map(fakeData => {
+            {fakeData.map(fakeData => {
               return (<SwiperSlide key={fakeData.id}>
                 {({ isActive }) => (
                   <Location isActive={isActive} fakeData={fakeData} />

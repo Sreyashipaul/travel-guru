@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { Redirect, useHistory, useLocation } from 'react-router-dom';
-import { UserContext } from '../../App';
-//import { css } from "@emotion/core";
+
 import FadeLoader from "react-spinners/FadeLoader";
+import { UserContext } from '../../App';
 import handleError from '../Error/Error';
-import DataItem from '../DataItem/DataItem';
+
 import g from './g.svg';
 import { createUserWithEmailAndPassword, handleGoogleSignIn, initializeFirebase, signInWithEmailAndPassword } from '../firebaseAuth/firebaseAuth';
-initializeFirebase() 
+import Information from '../Infromation/Information';
+initializeFirebase()
 const initUser = {
   firstName: '',
   lastName: '',
@@ -32,8 +33,7 @@ const Login = () => {
     e.persist()
   }
 
-  
-
+ 
   const submitHandler = e => {
     const errors = handleError(userInfo);
     setUserInfo({ ...userInfo, errors })
@@ -95,17 +95,15 @@ const Login = () => {
     return (
       <div className="sweet-loading">
         <FadeLoader
-          //css={override}
+          
           size={150}
           loading={loading}
         />
       </div>
     );
   }
-
   return (
-    <div>
-      <Container className="pr-0 pt-5">
+    <Container className="pr-0 pt-5">
       <Row>
         <Col sm={8} className="m-auto" xl={6} md="8">
           <Card>
@@ -113,7 +111,7 @@ const Login = () => {
               <h2 className="py-1">{newUser ? 'Create an account' : 'Login'}</h2>
               <Form autoComplete="off" onSubmit={submitHandler}>
                 {newUser && (
-                  <DataItem value={firstName}
+                  <Information value={firstName}
                     onChangeHandler={onChangeHandler}
                     error={errors.firstName}
                     name="firstName"
@@ -121,21 +119,21 @@ const Login = () => {
                     placeholder="First Name" />
                 )}
                 {newUser && (
-                  <DataItem value={lastName}
+                  <Information value={lastName}
                     onChangeHandler={onChangeHandler}
                     error={errors.lastName}
                     name="lastName"
                     customClass="loginInput"
                     placeholder="Last Name" />
                 )}
-                <DataItem value={email}
+                <Information value={email}
                   onChangeHandler={onChangeHandler}
                   error={errors.email}
                   name="email"
                   customClass="loginInput"
                   type="email"
                   placeholder="Email" />
-                <DataItem value={password}
+                <Information value={password}
                   onChangeHandler={onChangeHandler}
                   error={errors.password}
                   name="password"
@@ -143,7 +141,7 @@ const Login = () => {
                   customClass="loginInput"
                   placeholder="Password" />
                 {newUser && (
-                  <DataItem value={confirmPassword}
+                  <Information value={confirmPassword}
                     onChangeHandler={onChangeHandler}
                     type="password"
                     error={errors.confirmPassword}
@@ -175,7 +173,6 @@ const Login = () => {
         </Col>
       </Row>
     </Container>
-    </div>
   );
 };
 

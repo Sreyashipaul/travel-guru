@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {  Col, Container,  Jumbotron, Row } from 'react-bootstrap';
+import {  Col, Container, Card,Form, Jumbotron, Row } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 
 import fakeData from '../../fakeData/fakeData';
@@ -41,7 +41,13 @@ const Booking = () => {
           </Jumbotron>
         </Col>
         <Col xl={1} />
-        
+        <Card>
+            <Card.Body>
+              <Form onSubmit={submitHandler}>
+                <Button className="w-100" variant="warning" type="submit">Start Booking</Button>
+              </Form>
+            </Card.Body>
+          </Card>
       </Row>
     </Container>
   );

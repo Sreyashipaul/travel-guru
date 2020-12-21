@@ -1,5 +1,5 @@
 import React, {  useEffect, useState } from 'react';
-import locations from '../../fakeData/fakeData';
+import fakeData from '../../fakeData/fakeData';
 import {Container, Button, Col,  Jumbotron, Row} from 'react-bootstrap';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -24,7 +24,7 @@ function Home() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [booking, setBooking] = useState({});
   useEffect(() => {
-    const activeItem = locations.find( (_location , fakeData) => fakeData.toString() === slideIndex.toString());
+    const activeItem = fakeData.find( (_fakeData , index) => index.toString() === slideIndex.toString());
     setBooking(activeItem);
   }, [slideIndex]);
 
@@ -59,10 +59,10 @@ function Home() {
             onClick={(swiper) => onClickHandler(swiper)}
             onSlideChange={(swiper) => setSlideIndex(swiper.realIndex)}
           >
-            {locations.map(location => {
-              return (<SwiperSlide key={location.id}>
+            {locations.map(fakeData => {
+              return (<SwiperSlide key={fakeData.id}>
                 {({ isActive }) => (
-                  <Location isActive={isActive} location={location} />
+                  <Location isActive={isActive} fakeData={fakeData} />
                 )}
               </SwiperSlide>);
             })}

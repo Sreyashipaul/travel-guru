@@ -20,6 +20,7 @@ import { getCurrentUser, handleSignOut } from './Components/firebaseAuth/firebas
 export const UserContext = createContext();
 function App() {
   const location = useLocation();
+
   const [user,setUser]=useState(null);
   const [bookingInfo,setBookingInfo] = useState({});
 
@@ -41,12 +42,12 @@ function App() {
 <div className={`${location.pathname === '/' || location.pathname.includes('booking') ? "home" : ""}`}>
   <Header />
   <Switch>
-    <Route exact path="/" component={Home} />
-    <Route path="/booking/:id" component={Booking} />
+    <Route exact path="/" Component={Home} />
+    <Route path="/booking/:id" Component={Booking} />
     <PrivateRoute path="/search/:id">
       <Search />
     </PrivateRoute>
-    <Route path="/login" component={Login} />
+    <Route path="/login" Component={Login} />
   </Switch>
 </div>
 </UserContext.Provider>

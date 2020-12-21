@@ -1,5 +1,5 @@
 
-const locations = [
+const fakeData = [
 {
 "id": 1,
 "name": "Cox's Bazar",
@@ -118,4 +118,4 @@ const locations = [
 
 ]
 
-export default locations;
+export default fakeData;

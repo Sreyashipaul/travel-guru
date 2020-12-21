@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 
-function Location({ location, isActive }) {
-    const { name, image } = location;
+function Location({ fakeData, isActive }) {
+    const { name, image } = fakeData;
     return (
         <Card className={`bg-transparent ${isActive ? 'active' : 'not-active'}`}>
             <Card.Img variant="top" className="img-fluid" src={image} />
